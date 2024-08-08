@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 import os
-
+import numpy as np
 
 
 def report_water_calibration(df, save_path):
@@ -10,9 +10,14 @@ def report_water_calibration(df, save_path):
         # replace all nans with 0
     df = df.replace(np.nan, 0)
 
-    unique_boxes = df['box'].unique()
-    box = unique_boxes[0]
-
+    try:
+        unique_boxes = df['box'].unique()
+        box = unique_boxes[0]
+    except:
+        print("WARNING: .csv has no 'box' column")
+        print('setting box to 9')
+        box = 9
+        pass
 
     # Remove index
     remove_index = [0, 1, 2, 3, 4, 5, 6, 7, 12]
@@ -153,20 +158,3 @@ def report_water_calibration(df, save_path):
 
 
     pdf_pages.close()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

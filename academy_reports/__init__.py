@@ -1,6 +1,5 @@
 import argparse
 
-
 # ARGUMENT PARSER
 description = """
 use academy_reports to generate daily and intersession reports
